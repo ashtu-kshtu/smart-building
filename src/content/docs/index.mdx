@@ -1,40 +1,39 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Smart Building Portal
+description: Umfassende technische Dokumentation für KNX, DALI, Smart-Home-Integrationen und Gebäudeautomation.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Professionelles Fachwissen, Planungsrichtlinien und Konfigurationsleitfäden für moderne Gebäudetechnik.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
+    - text: Zu den Guides
       link: /guides/example/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+      variant: primary
+    - text: Instagram besuchen
+      link: https://instagram.com/elsi_alija
       icon: external
-      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Technische Fachbereiche
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="KNX Bussystem & ETS" icon="setting">
+		Dokumentation und Konfiguration rund um KNX-Installationen, Linienstrukturen und ETS-Projektierung.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	
+	<Card title="DALI Lichtsteuerung" icon="moon">
+		Einzel- und Gruppensteuerung von Leuchtmitteln, DALI-2 Standard und Tunable White.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+
+	<Card title="Visualisierung & IoT" icon="laptop">
+		Anbindung an Home Assistant, Logikmodule und moderne Smart-Home-Dashboards.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+
+	<Card title="Planung & Referenzen" icon="open-book">
+		Schaltpläne, Verteiler-Dokumentationen und Best Practices aus der Praxis.
 	</Card>
 </CardGrid>
