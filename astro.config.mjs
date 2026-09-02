@@ -9,6 +9,8 @@ export default defineConfig({
 			title: 'Dokumente',
 			social: [{ icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/elsi_alija' }],
 			sidebar: [
+...
+
 				{
 					label: 'Guides',
 					items: [
