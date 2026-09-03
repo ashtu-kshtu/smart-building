@@ -17,15 +17,24 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import knxLogo from '../../assets/KNX_logo.svg.webp';
+import daliLogo from '../../assets/DALI_2.png';
 
 ## Technische Fachbereiche
 
 <CardGrid>
-	<Card title="KNX" icon="setting">
+	<Card title="KNX">
+		<div style="margin-bottom: 10px;">
+			<Image src={knxLogo} alt="KNX Logo" width="100" />
+		</div>
 		Dokumentation und Konfiguration rund um KNX-Installationen, Linienstrukturen und ETS-Projektierung.
 	</Card>
 	
-	<Card title="DALI" icon="moon">
+	<Card title="DALI">
+		<div style="margin-bottom: 10px;">
+			<Image src={daliLogo} alt="DALI Logo" width="100" />
+		</div>
 		Einzel- und Gruppensteuerung von Leuchtmitteln, DALI-2 Standard und Tunable White.
 	</Card>
 
