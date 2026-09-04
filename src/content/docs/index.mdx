@@ -19,6 +19,8 @@ hero:
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import knxLogo from '../../assets/KNX_logo.svg.webp';
+import bacnetLogo from '../../assets/bacnet-logo.png';
+import modbusLogo from '../../assets/modbus-logo.png';
 
 ## Technische Fachbereiche
 
@@ -37,11 +39,23 @@ import knxLogo from '../../assets/KNX_logo.svg.webp';
 		Einzel- und Gruppensteuerung von Leuchtmitteln, DALI-2 Standard und Tunable White.
 	</Card>
 
-	<Card title="BACnet" icon="document">
+	<Card title="">
+		<a href="/bereiche/bacnet/" style="text-decoration: none; color: inherit; display: block;">
+			<div style="margin-bottom: 12px;">
+				<Image src={bacnetLogo} alt="BACnet Logo" width="120" />
+			</div>
+			<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">BACnet</h3>
+		</a>
 		Herstellerübergreifende Gebäudeautomation und Systemintegration im BACnet-Standard.
 	</Card>
 
-	<Card title="ModBUS" icon="puzzle">
+	<Card title="">
+		<a href="/bereiche/modbus/" style="text-decoration: none; color: inherit; display: block;">
+			<div style="margin-bottom: 12px;">
+				<Image src={modbusLogo} alt="Modbus Logo" width="120" />
+			</div>
+			<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">ModBUS</h3>
+		</a>
 		Serielle Kommunikation, Registerstrukturen und Integration von Mess- und Zähltechnik.
 	</Card>
 
