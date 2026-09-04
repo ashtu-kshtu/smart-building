@@ -1,114 +1,57 @@
 ---
-title: KNX Bussystem - Technische Spezifikation
-description: Umfassende, technische Dokumentation zur Architektur, dem Protokoll, der Topologie und der Applikationsschicht des KNX-Standards.
+title: KNX Bussystem - Protokoll & Applikation
+description: Umfassende Dokumentation zum KNX-Protokoll, den Übertragungsmedien, der Teilnehmerarchitektur und der Applikationsschicht.
 ---
 
-# KNX Bussystem: Technische Architektur & Protokoll
+# KNX Bussystem: Protokoll und Applikation
 
-KNX ist der weltweit standardisierte (ISO/IEC 14543-3), offene Standard für die Haus- und Gebäudeautomation. Verwaltet von der [KNX Association](https://www.knx.org), garantiert das System die nahtlose Interoperabilität von über 8.000 zertifizierten Geräten von mehr als 500 Herstellern. Die Projektierung erfolgt zentral über die **ETS (Engineering Tool Software)**.
+Die KNX Association entstand 1999 aus dem Zusammenschluss der EIB Association, der BCI (Batibus) und der European Home Systems Association (EHS)[cite: 1]. Das System ist ein offener Standard für die intelligente Gebäudeautomation und weltweit normiert, unter anderem durch CENELEC (EN 50090) und ISO/IEC (14543-3)[cite: 1]. 
 
----
+## 1. Übertragungsmedien (Physical Layer)
 
-## 1. Topologie und Netzwerkstruktur
+Das KNX-Protokoll kann über verschiedene physikalische Medien übertragen werden, welche über Medienkoppler miteinander verbunden werden können[cite: 1].
 
-KNX ist dezentral aufgebaut (kein zentraler Server notwendig) und hierarchisch in Linien und Bereiche gegliedert.
+*   **Twisted Pair (TP):** Die Übertragung erfolgt über eine getrennte Steuerleitung parallel zur 230 V Leitung[cite: 1]. Dieses Medium bietet die höchste Übertragungssicherheit und wird bevorzugt in Neuinstallationen eingesetzt[cite: 1].
+*   **Powerline (PL110):** KNX-Meldungen werden direkt über das vorhandene 230 V Stromnetz übertragen, wofür ein Neutralleiter vorhanden sein muss[cite: 1].
+*   **Radio Frequency (RF):** Die Signalübertragung erfolgt drahtlos über eine Funkstrecke, was sich besonders anbietet, wenn keine neuen Leitungen verlegt werden sollen[cite: 1].
+*   **IP / Ethernet:** Wird in großen Installationen eingesetzt, in denen eine schnelle Bereichslinie benötigt wird, oder zur Kommunikation mit mobilen Geräten[cite: 1].
 
-### 1.1 Hierarchischer Aufbau
-*   **Linie (Line):** Die kleinste physikalische Einheit. Eine Standard-TP-Linie kann bis zu 64 Teilnehmer aufnehmen. Mit modernen TP1-256 Spannungsversorgungen sind bis zu **256 Teilnehmer pro Linie** (ohne Linienverstärker) möglich.
-*   **Bereich (Area):** Bis zu 15 Linien können über **Linienkoppler (LK)** an eine Hauptlinie (Main Line) angeschlossen werden und bilden so einen Bereich.
-*   **Backbone (System):** Bis zu 15 Bereiche können über **Bereichskoppler (BK)** an die Bereichslinie (Backbone) gekoppelt werden. Oft wird hierfür heute das schnelle Ethernet (KNX IP Router) genutzt.
-*   **Maximale Ausbaustufe:** Über 65.000 Teilnehmer in einem Gesamtsystem.
+## 2. Buszugriff und Kollisionsvermeidung
 
-### 1.2 Physikalische Grenzen (KNX TP - Twisted Pair)
-Zur Gewährleistung der Signalintegrität (Vermeidung von Signalreflexionen und Spannungsabfällen) gelten strikte Längenrestriktionen:
-- **Max. Leitungslänge pro Linie:** 1.000 m
-- **Max. Entfernung zwischen zwei Teilnehmern:** 700 m
-- **Max. Entfernung Teilnehmer zur Spannungsversorgung:** 350 m
-- **Min. Entfernung zwischen zwei Spannungsversorgungen:** 200 m (bei ungekoppelten Drosseln)
+Das KNX-System arbeitet dezentral, wodurch keine zentrale Steuereinheit (wie ein PC) für den regulären Betrieb notwendig ist[cite: 1]. 
 
----
+*   Das KNX-Protokoll nutzt das CSMA/CA-Verfahren (Carrier Sense Multiple Access with Collision Avoidance) für den Buszugriff[cite: 1].
+*   Die Konfliktlösung bei gleichzeitigem Senden erfolgt durch bitweise Arbitrierung[cite: 1].
+*   Eine logische "0" ist auf dem Bus dominant, während eine logische "1" rezessiv ist[cite: 1].
+*   Sendet ein Gerät eine "1" und erkennt eine dominante "0" auf dem Bus, bricht es die Sendung ab, sodass das priorisierte Telegramm ohne Datenverlust übertragen wird[cite: 1].
 
-## 2. Übertragungsmedien (Physical Layer)
+## 3. Architektur der Busteilnehmer
 
-KNX unterstützt verschiedene Medien zur Signalübertragung, die über Medienkoppler miteinander verbunden werden können:
+Ein funktionsfähiger KNX-Teilnehmer (z. B. ein Sensor oder Aktor) besteht prinzipiell aus drei ineinandergreifenden Bestandteilen[cite: 1].
 
-| Medium | Abk. | Spezifikation & Einsatzgebiet |
-| :--- | :--- | :--- |
-| **Twisted Pair** | KNX TP | Standard-Buskabel (YCYM 2x2x0,8, meist grün). Daten- und Energieübertragung (29V DC) auf derselben Doppelader. 9.600 Bit/s. |
-| **IP / Ethernet** | KNX IP | Nutzung der LAN-Infrastruktur. Unterscheidung zwischen **KNX IP Routing** (Multicast für Backbone) und **KNX IP Tunneling** (Punkt-zu-Punkt, z.B. für ETS-Programmierung). |
-| **Radio Frequency** | KNX RF | Funkübertragung (868 MHz). Ideal für Nachrüstungen. Unterstützt KNX RF Ready und das neuere KNX RF Multi (Frequenzsprungverfahren). |
-| **Powerline** | KNX PL | Signalübertragung über das 230V-Stromnetz. (In Neuanlagen obsolet). |
+*   **Busankoppler (BA):** Ist für die physikalische Koppelfunktion zuständig, empfängt Telegramme vom Bus, dekodiert diese und sendet kodierte Informationen auf den Bus[cite: 1].
+*   **Anwendungsmodul (AM):** Verarbeitet die physikalischen Ein- und Ausgänge, gibt Informationen realer Eingänge an den Busankoppler weiter oder steuert reale Ausgänge an[cite: 1].
+*   **Applikationsprogramm (AP):** Bestimmt die spezifische Funktion des Geräts und wird in den Programmspeicher geladen[cite: 1].
 
----
+Die Intelligenz des Geräts wird in verschiedenen Speicherarten des Mikrocontrollers hinterlegt[cite: 1]:
+*   **(Flash) ROM:** Speichert die unveränderliche Systemsoftware (System Stack), identifizierbar über die Maskenversion[cite: 1].
+*   **RAM:** Speichert temporäre Werte, die bei einem Spannungseinbruch verloren gehen[cite: 1].
+*   **EEPROM:** Speichert das überschreibbare Applikationsprogramm, physikalische Adressen, Gruppenadressen und Parameter[cite: 1].
 
-## 3. Buszugriff und Telegrammaufbau (Data Link Layer)
+## 4. Applikationsschicht und Konfiguration
 
-### 3.1 Kollisionsvermeidung: CSMA/CA
-KNX TP nutzt das **CSMA/CA-Verfahren (Carrier Sense Multiple Access with Collision Avoidance)**. 
-- Das System nutzt bitweise Arbitrierung.
-- Logisch "0" (ca. -5V bis -9V Spannungsabfall) ist **dominant**.
-- Logisch "1" (Ruhespannung) ist **rezessiv**.
-- Senden zwei Geräte gleichzeitig, überwachen beide den Bus. Sendet Gerät A eine "0" und Gerät B eine "1", überschreibt die "0" die "1". Gerät B erkennt die Kollision, stoppt sofort den Sendevorgang und wartet, bis der Bus wieder frei ist. *Ergebnis: 100% Durchsatz ohne Datenverlust beim Sieger-Telegramm.*
+Die Interoperabilität zwischen Geräten verschiedener Hersteller wird durch standardisierte Konfigurationsarten und Telegrammnutzdaten gewährleistet[cite: 1].
 
-### 3.2 Struktur eines KNX-Telegramms (Standard Frame)
-Ein Telegramm besteht aus Zeichen (Zeichenzeit = 1,04 ms) und dauert ca. 20-40 ms.
+### 4.1 Konfigurierungsarten
+*   **S-Mode (System Mode):** Die Planung und Konfiguration erfolgt über einen PC mit der herstellerneutralen ETS (Engineering Tool Software)[cite: 1]. Diese Methode ist für KNX-zertifizierte Planer und vor allem für Großanlagen bestimmt[cite: 1].
+*   **E-Mode (Easy Mode):** Die Konfigurierung erfolgt nicht über einen PC, sondern mittels eines zentralen Kontrollers oder Tastern[cite: 1]. Diese Geräte haben meist eine beschränkte Funktionalität und sind für mittelgroße Anlagen konzipiert[cite: 1].
 
-1. **Control Field (Kontrollfeld):** Beinhaltet die Priorität (System, Urgent, Normal, Low).
-2. **Source Address (Quelladresse):** Die 16-Bit Physikalische Adresse des Senders (z.B. `1.1.45`).
-3. **Destination Address (Zieladresse):** 16-Bit. Kann eine Physikalische Adresse (für ETS-Download) oder meist eine **Gruppenadresse** (z.B. `1/2/14`) sein. Das 17. Bit (Routing-Bit) entscheidet über die Art der Adresse.
-4. **Routing Counter (TTL):** Startet bei 6. Wird von jedem Koppler um 1 dekrementiert. Bei 0 wird das Telegramm vernichtet (verhindert Zirkulieren).
-5. **Length (Länge):** 4-Bit Feld, gibt die Länge der Nutzdaten an (max. 15 Bytes im Standard-Frame, bis 254 Bytes im Extended Frame).
-6. **APCI/Data (Nutzdaten):** Application Layer Protocol Control Information. Enthält den eigentlichen Befehl (Read, Write, Response) und die Daten.
-7. **FCS (Frame Check Sequence):** Prüfsumme (Paritätsprüfung) zur Fehlererkennung.
-8. **Ack (Acknowledge):** Empfangsbestätigung der Zielgeräte (ACK, NAK, BUSY).
+### 4.2 Systemprofile und Objekte
+Die Systemsoftware eines Geräts basiert auf standardisierten Profilen, die den Speicherausbau und die unterstützten Funktionen definieren[cite: 1].
+*   **System 1 & 2:** Ältere Generationen, wobei System 2 bis zu 254 Kommunikationsobjekte unterstützt[cite: 1].
+*   **System 7 & B:** Entwickelt für komplexe Busteilnehmer (z. B. Applikationscontroller)[cite: 1]. System B hebt vorherige Begrenzungen auf und unterstützt bis zu 65.536 Kommunikationsobjekte[cite: 1].
 
----
-
-## 4. Applikationsschicht & Kommunikation (Application Layer)
-
-Hier findet die eigentliche Logik statt, die in der ETS projektiert wird.
-
-### 4.1 Kommunikationsobjekte und Flags
-Ein KNX-Gerät besteht aus Kommunikationsobjekten (KOs), denen **Gruppenadressen (GA)** zugewiesen werden. Wie sich ein KO verhält, wird durch Flags definiert:
-
-| Flag (DE / EN) | Bedeutung |
-| :--- | :--- |
-| **K / C (Kommunikation)** | Hauptschalter. Ist dies deaktiviert, reagiert das Objekt auf nichts. |
-| **L / R (Lesen)** | Erlaubt es dem Bus, den aktuellen Wert dieses Objekts per *ValueRead*-Telegramm abzufragen. (Sollte meist nur bei einem Objekt pro GA gesetzt sein!). |
-| **S / W (Schreiben)** | Das Objekt wertet eintreffende *ValueWrite*-Telegramme aus (z.B. Aktor schaltet Relais). |
-| **Ü / T (Übertragen)** | Das Gerät sendet bei einer Wertänderung aktiv ein *ValueWrite*-Telegramm auf den Bus (z.B. Taster oder Temperaturfühler). |
-| **A / U (Aktualisieren)** | Aktualisiert den Objektwert, wenn ein anderes Gerät auf eine Leseanforderung antwortet (ValueResponse). |
-| **I (Initialisieren)** | Sendet nach einem Busspannungsausfall automatisch eine Leseanforderung, um den aktuellen Status abzufragen. |
-
-### 4.2 Datenpunkttypen (DPT - Datapoint Types)
-DPTs garantieren die Interoperabilität. Sie definieren Format, Länge und Bedeutung der Nutzdaten:
-
-*   **DPT 1.xxx (1-Bit - B1):** 
-    *   `1.001` (Schalten: 0=Aus, 1=Ein)
-    *   `1.008` (Auf/Ab: 0=Auf, 1=Ab)
-*   **DPT 3.xxx (4-Bit - B1U3):** 
-    *   `3.007` (Dimmen relativ: 1 Bit für Richtung Heller/Dunkler, 3 Bit für Schrittweite).
-*   **DPT 5.xxx (8-Bit / 1-Byte - U8):** 
-    *   `5.001` (Skalierung: 0-100%, Auflösung 0,4%)
-    *   `5.004` (Dezimalwert: 0-255).
-*   **DPT 9.xxx (16-Bit / 2-Byte - F16):** 
-    *   `9.001` (Temperatur in °C)
-    *   `9.004` (Helligkeit in Lux).
-*   **DPT 20.102 (1-Byte):** HVAC Modus (0=Auto, 1=Comfort, 2=Standby, 3=Economy, 4=Building Protection).
-*   **DPT 232.600 (3-Byte):** RGB Farbsteuerung (3x 8-Bit für Rot, Grün, Blau).
-
----
-
-## 5. Sicherheit: KNX Secure
-
-Angesichts moderner Cyber-Bedrohungen (besonders in IP-Netzwerken) wurde der Standard um **KNX Secure** (ISO 22599) erweitert:
-
-1.  **KNX IP Secure:** Verschlüsselt das gesamte KNX-Telegramm (Routing & Tunneling) auf der IP-Ebene (Ethernet/WLAN). Es schützt die Backbone-Kommunikation.
-2.  **KNX Data Secure:** Verschlüsselt die Nutzdaten direkt auf der Twisted-Pair- oder RF-Leitung, unabhängig vom Medium.
-    *   Nutzt **AES-128 CCM** zur Verschlüsselung.
-    *   Integrierter **MAC (Message Authentication Code)** garantiert, dass das Telegramm nicht manipuliert wurde.
-    *   **Sequenznummern** verhindern Replay-Angriffe (Aufzeichnen und späteres erneutes Abspielen eines Öffnen-Befehls).
-    *   Die Einrichtung erfolgt über individuelle FDSK (Factory Default Setup Keys) per QR-Code in der ETS.
-
----
-*Referenzquellen: Offizielle Spezifikationen der [KNX Association](https://www.knx.org), ISO/IEC 14543-3 Normierung, ETS6 Handbuch.*
+### 4.3 Standardisierte Anwenderfunktionen (Beispiel Dimmen)
+Damit Aktoren und Sensoren einheitlich kommunizieren, sind die Befehlsfolgen in der Applikationsschicht streng genormt[cite: 1].
+*   **Start/Stopp-Dimmen:** Die Tastenbetätigungsdauer wird genutzt, um die Funktion zu unterscheiden[cite: 1]. Bei kurzer Betätigung sendet der Sensor ein Telegramm zum "Schalten", bei langer Betätigung ein Telegramm "Dimmen Start" und beim Loslassen "Dimmen Stopp"[cite: 1].
+*   **Zyklisches Dimmen:** Bei drahtlosen Fernbedienungen werden Dimmbefehle (z. B. "Helligkeit um 12,5 % erhöhen") zyklisch gesendet, um sicherzustellen, dass Signalunterbrechungen nicht zum Verlust wichtiger Stopptelegramme führen[cite: 1].
