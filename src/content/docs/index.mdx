@@ -19,6 +19,7 @@ hero:
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import knxLogo from '../../assets/KNX_logo.svg.webp';
+import daliLogo from '../../assets/dali-2.jpg';
 import bacnetLogo from '../../assets/bacnet-logo.png';
 import modbusLogo from '../../assets/modbus-logo.png';
 
@@ -37,12 +38,12 @@ import modbusLogo from '../../assets/modbus-logo.png';
 	
 	<Card title="">
 		<a href="/bereiche/dali/" style="text-decoration: none; color: inherit; display: block;">
-				<div style="margin-bottom: 12px;">
-					<Image src={daliLogo} alt="daliLogo" width="120" />
-				</div>
-				<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">BACnet</h3>
-			</a>
-			Einzel- und Gruppensteuerung von Leuchtmitteln, DALI-2 Standard und Tunable White.
+			<div style="margin-bottom: 12px;">
+				<Image src={daliLogo} alt="DALI-2 Logo" width="120" />
+			</div>
+			<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">DALI</h3>
+		</a>
+		Einzel- und Gruppensteuerung von Leuchtmitteln, DALI-2 Standard und Tunable White.
 	</Card>
 
 	<Card title="">
