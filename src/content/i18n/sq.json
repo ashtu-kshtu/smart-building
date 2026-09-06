@@ -1,0 +1,16 @@
+{
+  "themeSelect.accessibleLabel": "Zgjidh temën",
+  "themeSelect.dark": "Errët",
+  "themeSelect.light": "Dritë",
+  "themeSelect.system": "Sistemi",
+  "menuButton.accessibleLabel": "Menuja",
+  "sidebarNav.accessibleLabel": "Navigimi kryesor",
+  "tableOfContents.onThisPage": "Në këtë faqe",
+  "tableOfContents.overview": "Përmbledhje",
+  "search.label": "Kërko",
+  "search.shortcutLabel": "Kërko",
+  "page.editLink": "Ndrysho këtë faqe",
+  "page.previousLink": "Faqja e mëparshme",
+  "page.nextLink": "Faqja tjetër",
+  "404.text": "Faqja nuk u gjet"
+}
