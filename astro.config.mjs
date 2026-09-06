@@ -8,16 +8,18 @@ export default defineConfig({
         starlight({
             title: 'Smart-building',
             social: [{ icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/elsi_alija' }],
+            // Du kannst customCss hier drin lassen oder entfernen, 
+            // für die Flaggen wird es nicht mehr benötigt.
             customCss: [
                 './src/styles/custom.css',
             ],
             locales: {
                 root: {
-                    label: 'Deutsch',
+                    label: '🇩🇪 Deutsch', // Flagge hier direkt einfügen
                     lang: 'de',
                 },
                 sq: {
-                    label: 'Shqip',
+                    label: '🇦🇱 Shqip', // Flagge hier direkt einfügen
                     lang: 'sq',
                 },
             },
