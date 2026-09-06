@@ -1,6 +1,6 @@
 ---
 title: Smart-building
-description: Njohuri profesionale, udhëzime planifikimi...
+description: Njohuri profesionale, udhëzime planifikimi dhe manuale konfigurimi për teknologjinë moderne të ndërtesave.
 template: doc
 hero:
   tagline: Njohuri profesionale, udhëzime planifikimi dhe manuale konfigurimi për teknologjinë moderne të ndërtesave.
@@ -13,14 +13,56 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import knxLogo from '../../../assets/KNX_logo.svg.webp';
+import daliLogo from '../../../assets/dali-2.jpg';
+import bacnetLogo from '../../../assets/bacnet-logo.png';
+import modbusLogo from '../../../assets/modbus-logo.png';
 
 ## Fushat teknike
 
 <CardGrid>
-  <Card title="KNX">
+  <Card title="">
+    <a href="/sq/bereiche/knx/" style="text-decoration: none; color: inherit; display: block;">
+      <div style="margin-bottom: 12px;">
+        <Image src={knxLogo} alt="KNX Logo" width="120" />
+      </div>
+      <h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">KNX</h3>
+    </a>
     Dokumentacion dhe konfigurim për instalimet KNX, strukturat e linjave dhe projektimin në ETS.
   </Card>
-  <Card title="DALI">
+  
+  <Card title="">
+    <a href="/sq/bereiche/dali/" style="text-decoration: none; color: inherit; display: block;">
+      <div style="margin-bottom: 12px;">
+        <Image src={daliLogo} alt="DALI-2 Logo" width="120" />
+      </div>
+      <h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">DALI</h3>
+    </a>
     Kontrolli individual dhe në grup i ndriçuesve, standardi DALI-2 dhe Tunable White.
+  </Card>
+
+  <Card title="">
+    <a href="/sq/bereiche/bacnet/" style="text-decoration: none; color: inherit; display: block;">
+      <div style="margin-bottom: 12px;">
+        <Image src={bacnetLogo} alt="BACnet Logo" width="120" />
+      </div>
+      <h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">BACnet</h3>
+    </a>
+    Automatizimi i ndërtesave nga prodhues të ndryshëm dhe integrimi i sistemit në standardin BACnet.
+  </Card>
+
+  <Card title="">
+    <a href="/sq/bereiche/modbus/" style="text-decoration: none; color: inherit; display: block;">
+      <div style="margin-bottom: 12px;">
+        <Image src={modbusLogo} alt="Modbus Logo" width="120" />
+      </div>
+      <h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">ModBUS</h3>
+    </a>
+    Komunikimi serial, strukturat e regjistrave dhe integrimi i teknologjisë së matjes.
+  </Card>
+
+  <Card title="Elektro" icon="open-book">
+    Bazat, standardet, skemat e lidhjeve dhe praktikat më të mira për instalimet elektrike.
   </Card>
 </CardGrid>
