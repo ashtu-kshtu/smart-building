@@ -1,16 +1,16 @@
 ---
-title: ModBUS Kommunikation
-description: Integration von Energiezählern und Anlagen via Modbus RTU und TCP.
+title: Komunikimi ModBUS
+description: Integrimi i matësve të energjisë dhe impianteve përmes Modbus RTU dhe TCP.
 ---
 
-# ModBUS Protokoll
+# Protokolli ModBUS
 
-Modbus ist ein bewährtes, offenes und robustes Kommunikationsprotokoll aus der Industrie. In der Gebäudeautomation wird es heute vor allem zur Einbindung von Energiezählern, Wechselrichtern und spezialisierten Anlagen genutzt.
+Modbus është një protokoll komunikimi i dëshmuar, i hapur dhe i fuqishëm nga industria. Në automatizimin e ndërtesave, ai përdoret sot kryesisht për integrimin e matësve të energjisë, inverteve dhe impianteve të specializuara.
 
-## Technische Grundlagen
-- **Modbus RTU (Seriell):** Verkabelung, Terminierung und RS485-Grundlagen.
-- **Modbus TCP (Ethernet):** Netzwerkintegration über IP.
-- **Register & Datentypen:** Auslesen von Holding Registers, Input Registers und Coils.
-- **Master/Slave Architektur:** (bzw. Client/Server) – Wie die Kommunikation im Netzwerk abläuft.
+## Bazat teknike
+- **Modbus RTU (Serik):** Kabllimi, terminimi dhe bazat e RS485.
+- **Modbus TCP (Ethernet):** Integrimi në rrjet përmes IP.
+- **Regjistrat & Llojet e të dhënave:** Leximi i Holding Registers, Input Registers dhe Coils.
+- **Arkitektura Master/Slave:** (ose Client/Server) – Si zhvillohet komunikimi në rrjet.
 
-Hier findest du Tabellen, Register-Mappings und Tipps zur Fehlersuche bei Modbus-Installationen.
+Këtu do të gjeni tabela, hartëzimet e regjistrave (Register-Mappings) dhe këshilla për gjetjen e defekteve (troubleshooting) në instalimet Modbus.

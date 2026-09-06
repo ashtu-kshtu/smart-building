@@ -1,16 +1,16 @@
 ---
-title: Elektrotechnik & Installation
-description: Grundwissen, Normen und Richtlinien für die Elektroinstallation im Smart Building.
+title: Elektroteknika & Instalimi
+description: Njohuritë bazë, standardet dhe direktivat për instalimet elektrike në ndërtesat inteligjente (Smart Building).
 ---
 
-# Elektrotechnik in der Gebäudeautomation
+# Elektroteknika në automatizimin e ndërtesave
 
-Jedes Smart Building basiert auf einer sauberen, sicheren und normgerechten Elektroinstallation. Dieser Bereich behandelt die physische Infrastruktur, die den Bussystemen zugrunde liegt.
+Çdo ndërtesë inteligjente (Smart Building) bazohet në një instalim elektrik të pastër, të sigurt dhe në përputhje me standardet. Kjo pjesë trajton infrastrukturën fizike që qëndron në themel të sistemeve të bus-it.
 
-## Wichtige Themenbereiche
-- **Schaltschrankbau:** Dimensionierung, Wärmeentwicklung und Aufbau von Verteilern.
-- **Leitungsberechnung:** Querschnitte, Spannungsfall und Absicherung.
-- **Normen (VDE):** Wichtige Richtlinien für die sichere Errichtung von Niederspannungsanlagen.
-- **Spannungsversorgung:** Konzepte für Ausfallsicherheit (USV) und Netztrennung.
+## Temat e rëndësishme
+- **Ndërtimi i kuadrove elektrikë:** Dimensionimi, gjenerimi i nxehtësisë dhe struktura e shpërndarësve.
+- **Llogaritja e linjave (kabllove):** Seksionet tërthore, rënia e tensionit dhe mbrojtja (siguresat).
+- **Standardet (VDE):** Direktivat e rëndësishme për ndërtimin e sigurt të sistemeve të tensionit të ulët.
+- **Furnizimi me energji:** Konceptet për mbrojtjen nga ndërprerjet (UPS) dhe ndarjen e rrjetit.
 
-Hier bündeln wir das handwerkliche und planerische Basiswissen der modernen Elektrotechnik.
+Këtu përmbledhim njohuritë bazë praktike dhe të planifikimit të inxhinierisë elektrike moderne.
