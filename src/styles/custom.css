@@ -1,0 +1,8 @@
+/* Wir nutzen direkt Emojis, die vom Browser besser gerendert werden */
+.sl-dropdown select option[value*="de"]::after {
+  content: " 🇩🇪";
+}
+
+.sl-dropdown select option[value*="sq"]::after {
+  content: " 🇦🇱";
+}
