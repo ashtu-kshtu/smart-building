@@ -6,3 +6,10 @@
 .sl-dropdown select option[value*="sq"]::after {
   content: " 🇦🇱";
 }
+/* Instagram-Text neben dem Icon im Menü erzwingen */
+a[href*="instagram"]::after {
+  content: " Instagram";
+  font-size: 0.875rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
