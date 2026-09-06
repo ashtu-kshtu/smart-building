@@ -23,19 +23,29 @@ export default defineConfig({
           lang: 'sq',
         },
       },
-      sidebar: [
+     sidebar: [
         {
           label: 'Startseite',
+          translations: {
+            sq: 'Faqja kryesore'
+          },
           link: '/',
         },
         {
           label: 'Fachbereiche',
+          translations: {
+            sq: 'Fushat teknike'
+          },
           items: [
             { label: 'KNX', slug: 'bereiche/knx' },
             { label: 'DALI', slug: 'bereiche/dali' },
             { label: 'BACnet', slug: 'bereiche/bacnet' },
             { label: 'ModBUS', slug: 'bereiche/modbus' },
-            { label: 'Elektro', slug: 'bereiche/elektro' },
+            { 
+              label: 'Elektro', 
+              translations: { sq: 'Elektrike' }, // Bei Bedarf anpassen
+              slug: 'bereiche/elektro' 
+            },
           ],
         },
       ],
