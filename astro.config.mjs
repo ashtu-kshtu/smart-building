@@ -8,6 +8,17 @@ export default defineConfig({
         starlight({
             title: 'Smart-building',
             social: [{ icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/elsi_alija' }],
+            // Mehrsprachigkeit mit Flaggen-Emojis im Label
+            locales: {
+                root: {
+                    label: '🇩🇪 Deutsch',
+                    lang: 'de',
+                },
+                sq: {
+                    label: '🇦🇱 Shqip',
+                    lang: 'sq',
+                },
+            },
             sidebar: [
                 {
                     label: 'Startseite',
