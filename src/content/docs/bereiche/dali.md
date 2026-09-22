@@ -1,52 +1,57 @@
 ---
-title: DALI Lichtsteuerung
-description: Umfassende Dokumentation zum Digital Addressable Lighting Interface (DALI, DALI-2 und D4i) inkl. Spezifikationen der DALI Alliance.
+title: DALI Lichtsteuerung – Historie, Technik und Anwendungen
+description: Von der Entstehung des Standards über die spezifischen DALI Device Types (DT0 bis DT8) bis hin zu konkreten Anwendungen in der professionellen Gebäudeautomation.
 ---
 
-# DALI (Digital Addressable Lighting Interface)
+# Die Evolution der Lichtsteuerung: DALI im Detail
 
-DALI ist das international genormte Protokoll (IEC 62386) zur digitalen, störsicheren Datenübertragung in der Lichttechnik. Während die erste DALI-Generation die analoge 1-10V-Technik erfolgreich ablöste, legt der aktuelle Standard **DALI-2** den Fokus auf uneingeschränkte Interoperabilität zwischen verschiedenen Herstellern. Zudem standardisiert DALI-2 erstmals auch Steuer- und Eingabegeräte (wie Sensoren und Taster) vollständig im Protokoll. 
+## 1. Geschichte und Entstehung: Warum DALI entwickelt wurde
 
-Dieser Bereich dient als tiefgehendes Nachschlagewerk basierend auf offiziellen Spezifikationen der DALI Alliance sowie führender DALI-Komponentenhersteller wie Tridonic und Lunatone.
+In den späten 1990er Jahren stieß die analoge Beleuchtungssteuerung zunehmend an ihre Grenzen. Der bis dahin dominierende 1-10V-Standard war zwar etabliert, brachte jedoch erhebliche Nachteile mit sich: Die Kommunikation verlief nur in eine Richtung (unidirektional), der Verkabelungsaufwand für verschiedene Lichtgruppen war immens, und Spannungsabfälle auf der Leitung führten zu ungleichmäßigem Dimmverhalten. Zudem war keine Statusrückmeldung defekter Leuchtmittel möglich.
 
-## 1. Systemgrenzen und fundamentale Eigenschaften
+Um diese Probleme zu lösen, schlossen sich führende Hersteller der Lichtindustrie (wie Osram, Philips und Tridonic) zusammen. Das Ziel war ein herstellerübergreifender, digitaler Standard: Das **Digital Addressable Lighting Interface (DALI)** wurde geboren und in der Norm IEC 60929 (später IEC 62386) fixiert. DALI sollte die Einfachheit der analogen Installation beibehalten – etwa die gemeinsame Verlegung von Netz- und Steuerleitung[cite: 2] – aber die Intelligenz dezentralisieren und eine bidirektionale Kommunikation (Senden und Empfangen) ermöglichen.
 
-Ein DALI-System basiert auf einer 2-Draht-Busleitung, die ohne Berücksichtigung der Polarität zusammen mit der Netzspannung (230V) verlegt werden kann. 
+## 2. Technische Möglichkeiten und Systemarchitektur
 
-*   **Netzwerk-Parameter:** Ein einzelner DALI-Kreis erlaubt den Anschluss von bis zu 64 DALI-Betriebsgeräten. Zusätzlich können 16 logische Gruppen und 16 Szenen pro Gerät vergeben werden.
-*   **Elektrische Spezifikationen:** Die DALI-Busspannung variiert zwischen 12 V und 22,5 V (typisch 16 V). Der maximale DALI-Systemstrom ist auf 250 mA limitiert. Da ein Betriebsgerät (EVG) typischerweise max. 2 mA zieht, ergeben 64 Teilnehmer maximal 128 mA. Die verbleibende Leistung kann zur Versorgung von busgespeisten Steuermodulen oder Sensoren genutzt werden.
-*   **Datenübertragung & Dimmung:** Die Übertragungsrate ist auf 1200 Baud festgelegt (asynchrone Schnittstelle). Die Lichtauflösung bei der standardisierten logarithmischen Dimmkurve reicht bis zu 0,1 % hinab, was dem menschlichen Helligkeitsempfinden optimal angepasst ist.
-*   **Wichtige DALI-Parameter (nach Lunatone):** In den Betriebsgeräten werden systemkritische Zustände lokal konfiguriert. Dazu zählen die *FadeTime* (Überblendzeit), *FadeRate* (Dimmgeschwindigkeit), das *PowerOn Level* (Einschaltverhalten bei Netzspannungsrückkehr) und das *System Failure Level* (vordefiniertes Sicherheitsverhalten bei Ausfall der DALI-Busspannung).
+DALI bietet Architekten, Elektroplanern und Systemintegratoren eine enorme Flexibilität bei der Lichtgestaltung. Die Kernfunktionen umfassen:
 
-## 2. DALI-2 und Multimaster-Fähigkeit
+*   **Bidirektionale Kommunikation:** Steuergeräte können Befehle senden und gleichzeitig Statusinformationen (z. B. "Leuchtmittel defekt" oder "Vorschaltgerät überhitzt") von den Leuchten abfragen.
+*   **Dezentrale Intelligenz:** Alle wichtigen Parameter wie die Kurzadresse (0-63), Gruppenzugehörigkeiten (0-15) und bis zu 16 Lichtszenen werden direkt im jeweiligen elektronischen Vorschaltgerät (EVG) gespeichert.
+*   **Logarithmische Dimmung:** Die Dimmkennlinie ist exakt an die Empfindlichkeit des menschlichen Auges angepasst, was für einen sehr weichen und natürlichen Helligkeitsverlauf sorgt.
+*   **Synchronität:** Bei einem Szenenaufruf dimmen alle beteiligten Leuchten absolut synchron auf den Zielwert, unabhängig von ihrem vorherigen Zustand.
 
-Mit DALI-2 wurde das System vollumfänglich multimasterfähig. Das bedeutet, dass nicht nur ein zentrales Gehirn sendet, sondern mehrere Steuergeräte (Application Controller) und Eingabegeräte (Sensoren) im selben Netzwerk miteinander kommunizieren.
-*   **Intelligente Lichtsensorik:** Moderne DALI-2 Sensoren (wie das kompakte Lunatone DALI-2 LS Modul oder der Tridonic MSensor) vereinen komplexe Umgebungslichtregelung (Konstantlichtregelung) und Anwesenheitserkennung. 
-*   **Erweiterte Umwelt-Sensoren:** Über moderne DALI-Infrastruktur lassen sich inzwischen auch Werte wie Temperatur, Luftfeuchtigkeit, Luftdruck oder Luftqualität erfassen und in das Netzwerk einspeisen.
+## 3. DALI Device Types (Gerätetypen): Von DT0 bis DT8
 
-## 3. D4i: Die IoT-Ready Erweiterung (DALI Alliance)
+Um die enorme Vielfalt an Leuchtmitteln und Funktionen im Protokoll abzubilden, ist der DALI-Standard in verschiedene "Device Types" (DT) unterteilt. Jeder Typ definiert spezifische Befehlssätze für eine bestimmte Technologie:
 
-D4i (DALI for IoT) ist eine signifikante Erweiterung der DALI-2 Zertifizierung, welche zukunftssichere, "IoT-ready" Leuchten definiert. D4i fokussiert sich stark auf sogenanntes **Intra-Luminaire DALI** – also ein autarkes DALI-Netzwerk *innerhalb* einer einzigen Leuchte.
+*   **DT0 (Fluorescent Lamps):** Der ursprüngliche Standard für Leuchtstofflampen.
+*   **DT1 (Emergency Lighting):** Einzelbatterieversorgte Notbeleuchtung. Ermöglicht automatisierte Funktions- und Betriebsdauertests.
+*   **DT2 (HID Lamps):** Hochdruck-Entladungslampen.
+*   **DT3 (Low-Voltage Halogen):** Niedervolt-Halogenlampen.
+*   **DT4 (Incandescent Lamps):** Klassische Glühlampen (Phasenanschnitt/-abschnittdimmer).
+*   **DT5 (DC Voltage):** Konverter zur Wandlung von DALI in ein analoges 1-10V-Signal.
+*   **DT6 (LED Modules):** Der heutige Standard für LED-Treiber. Steuert einen einzelnen Kanal (meist Helligkeit). Für RGB-Leuchten mit DT6 werden pro Farbe eine eigene DALI-Kurzadresse und ein eigener Treiberkanal benötigt.
+*   **DT7 (Switching Relays):** Schaltrelais zur Integration von nicht-dimmbaren Lasten in das DALI-System.
+*   **DT8 (Colour Control):** Die modernste Erweiterung für Farbsteuerung (Tunable White, RGB, RGBW). Das Besondere an DT8: Ein LED-Treiber benötigt für mehrere Farbkanäle **nur eine einzige DALI-Kurzadresse**. Helligkeit und Farbtemperatur können unabhängig voneinander mit speziellen DT8-Befehlen gesteuert werden, was Adressen spart und die Programmierung massiv vereinfacht.
 
-*   **Integrierte Stromversorgung (Part 250):** Für eine D4i-Zertifizierung muss ein LED-Treiber über eine integrierte DALI-Busstromversorgung verfügen. Dadurch entfällt der Platzbedarf für externe Netzteile, um Sensoren oder Kommunikationsmodule in oder an der Leuchte zu betreiben.
-*   **Plug-and-Play Stecksysteme:** D4i ist die technische Basis für drahtlose Smart-City- und Smart-Building-Stecksysteme wie Zhaga Book 18 oder ANSI C136.41 (Zhaga-D4i). Sensoren oder drahtlose Netzwerkknoten (NLCs) können hierüber einfach von außen auf die Leuchte aufgesteckt werden.
+## 4. DALI in der professionellen Lichtsteuerung
 
-## 4. Datenmanagement: Leuchten-, Energie- und Diagnosedaten
+In modernen Zweckbauten arbeitet DALI selten als komplett isoliertes System. Es bildet die hochspezialisierte Ausführungsebene (Feldebene), die über Gateways (z.B. KNX-DALI, BACnet-DALI oder Modbus-DALI) in die übergeordnete Gebäudeleittechnik (BMS) integriert wird. 
 
-Die DALI Alliance schreibt für D4i einen reichhaltigen standardisierten Datensatz vor (von Tridonic oft unter dem Begriff *lumDATA* zusammengefasst), der das Facility Management revolutioniert. 
+Dabei übernimmt DALI das schnelle, synchrone Dimmen und das lokale Sensormanagement (Tageslichtregelung, Präsenzerkennung). Das übergeordnete BMS nutzt diese Daten gewerkeübergreifend – beispielsweise, um bei erkannter Raumpräsenz nicht nur das Licht einzuschalten, sondern auch die Klimaanlage hochzufahren oder die Jalousien zu öffnen.
 
-*   **Part 251 (Leuchtendaten):** Speicherung von Herstellerinformationen, OEM-Identifikationsdaten und Nennleistungen direkt im LED-Treiber für ein einfaches, digitales Asset-Management.
-*   **Part 252 (Energiedaten):** Übermittlung des aktuellen Stromverbrauchs und der Leistungsaufnahme in Echtzeit, um Gebäudeenergieausweise zu bedienen und Betriebskosten zu senken.
-*   **Part 253 (Diagnosedaten):** Überwachung von Fehlern (wie Übertemperatur, Überspannung) sowie Betriebsstunden. Dies ermöglicht *Predictive Maintenance* (vorausschauende Wartung), da drohende Ausfälle erkannt werden, bevor die Komponente versagt.
+## 5. Konkrete Anwendungsbereiche
 
-## 5. Notbeleuchtung nach DALI-2 Part 202
+Die Skalierbarkeit und Flexibilität von DALI machen es zum idealen Standard für nahezu jede Gebäudegröße:
 
-Mit dem Update des Standards IEC 62386-202 im Jahr 2021 können nun auch "Self-contained emergency control gear" (einzelbatterieversorgte Notbeleuchtungskomponenten) nach DALI-2 zertifiziert werden.
-*   **Kompromisslose Interoperabilität:** Treibermodule (wie Tridonic EM powerLED PRO für LiFePO4-Batterien) sprechen nun garantiert die gleiche Sprache und lassen sich mit DALI-2 Lichtmanagementsystemen beliebiger Hersteller kombinieren.
-*   **Automatisiertes Prüfen:** Der Batteriezustand, Fehler sowie Systemtests können vollautomatisch über den DALI-Bus initiiert und protokolliert werden, wodurch gesetzliche Prüfaufwände stark sinken.
+### Luxusvillen & Smart Homes
+In gehobenen Wohnimmobilien steht der Komfort im Vordergrund. DALI (oft gekoppelt mit einem KNX-System) ermöglicht komplexe Lichtszenen für verschiedene Stimmungslagen (z.B. "Kochen", "Kino", "Gäste"). Durch DT8 (Tunable White) kann der Tageslichtverlauf simuliert werden (Human Centric Lighting), was das Wohlbefinden und den Biorhythmus der Bewohner unterstützt.
 
-## 6. Gateways, Displays und Gebäudeleittechnik (BMS)
+### Hotellerie
+Hotels erfordern eine Mischung aus Repräsentation, Komfort und Energieeffizienz. In der Lobby schaffen RGBW-Lichtszenen (DT8) atmosphärische Akzente, die sich tageszeitabhängig ändern. Auf den Fluren senkt die Kombination aus DALI-Präsenzmeldern und einer Grundbeleuchtung (z.B. 10% Helligkeit im Standby, 80% bei Bewegung) die Energiekosten drastisch, ohne das Sicherheitsgefühl der Gäste zu beeinträchtigen.
 
-Um die detaillierte DALI-Feldebene mit dem Rest des Gebäudes zu verbinden, kommen Gateways und Visualisierungen zum Einsatz.
-*   **DALI-2 Displays:** Lösungen wie das *Lunatone DALI-2 Display 7"* fungieren als zentrale Bediengeräte und Application Controller. Sie können mehrere DALI-Linien verwalten, WLAN-Schnittstellen bereitstellen und ermöglichen RGB- sowie Tunable-White-Steuerungen per Touch-Oberfläche.
-*   **BMS Integration (BACnet/REST API):** Hochwertige Zentralsteuerungen (wie Tridonic sceneCOM evo) integrieren das DALI-2-Lichtnetzwerk über BACnet nahtlos in die Klima-, Lüftungs- und Heizungstechnik eines Gebäudes. Alternativ erlauben REST-API-Schnittstellen die individuelle Analyse von IoT-Daten (z.B. Heatmaps zur Raumnutzung) in externen Dashboards.
+### Gewerbe & Büro (Offices)
+Im Büroumfeld liegt der Fokus auf Arbeitsstättenrichtlinien und Flexibilität. DALI-Lichtbänder passen sich über Tageslichtsensoren kontinuierlich dem einfallenden Sonnenlicht an (Konstantlichtregelung), was die Konzentration fördert und massiv Energie spart. Bei Umstrukturierungen (z.B. neue Schreibtischinseln) müssen keine Kabel neu gezogen werden; die DALI-Leuchten werden per Software einfach neuen Gruppen und Tastern zugeordnet.
+
+### Industrie & Logistik
+In Produktionshallen mit schwer zugänglichen Hallenstrahlern spielen Statusrückmeldungen und Wartung eine entscheidende Rolle. Das Facility Management erhält präzise Fehlermeldungen (z.B. Treiberausfall bei Leuchte 45 in Halle 3) direkt auf den Leitstand. Zusätzlich gewährleistet die automatisierte Prüfung der DALI-Notbeleuchtung (DT1) die gesetzliche Konformität ohne manuellen Kontrollaufwand.
