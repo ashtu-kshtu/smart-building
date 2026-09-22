@@ -1,57 +1,52 @@
 ---
-title: DALI Lichtsteuerung
-description: Alles rund um das Digital Addressable Lighting Interface (DALI) und moderne Beleuchtungstechnik.
+title: DALI Lichtsteuerung – Deep Dive
+description: Umfassende Dokumentation zum Digital Addressable Lighting Interface (DALI, DALI-2 und D4i) inkl. Spezifikationen der DALI Alliance, Tridonic und Lunatone.
 ---
 
 # DALI (Digital Addressable Lighting Interface)
 
-DALI steht für "Digital Addressable Lighting Interface" und ist die Definition für die standardisierte digitale Betriebsgeräteschnittstelle in der Lichttechnik[cite: 2]. Dieser herstellerübergreifende Standard, fixiert in der Norm IEC 60929, garantiert die Austauschbarkeit und Interoperabilität von elektronischen Betriebsgeräten (EVGs) unterschiedlicher Hersteller[cite: 2]. DALI wurde entwickelt, um die ältere analoge 1-10V-Technik abzulösen und bietet maximale Flexibilität bei der Lichtgestaltung durch dezentrale Intelligenz[cite: 2].
+DALI ist das international genormte Protokoll (IEC 62386) zur digitalen, störsicheren Datenübertragung in der Lichttechnik. Während die erste DALI-Generation die analoge 1-10V-Technik erfolgreich ablöste, legt der aktuelle Standard **DALI-2** den Fokus auf uneingeschränkte Interoperabilität zwischen verschiedenen Herstellern. Zudem standardisiert DALI-2 erstmals auch Steuer- und Eingabegeräte (wie Sensoren und Taster) vollständig im Protokoll. 
 
-Dieser Bereich dient als detailliertes Nachschlagewerk für die Planung, Elektroinstallation und Inbetriebnahme von DALI-Lichtsteueranlagen.
+Dieser Bereich dient als tiefgehendes Nachschlagewerk basierend auf offiziellen Spezifikationen der DALI Alliance sowie führender DALI-Komponentenhersteller wie Tridonic und Lunatone.
 
-## 1. Systemgrenzen und Architektur
+## 1. Systemgrenzen und fundamentale Eigenschaften
 
-DALI ist auf Funktionalität und Einfachheit für die Beleuchtungsebene zugeschnitten und fungiert oft als Subsystem in einem übergeordneten Gebäudemanagement[cite: 2].
+Ein DALI-System basiert auf einer 2-Draht-Busleitung, die ohne Berücksichtigung der Polarität zusammen mit der Netzspannung (230V) verlegt werden kann. 
 
-*   **Adressen:** Ein System (eine DALI-Linie) unterstützt maximal 64 Individualadressen (Einzelgeräte)[cite: 2].
-*   **Gruppen:** Es können bis zu 16 Gruppenadressen vergeben werden[cite: 2].
-*   **Lichtszenen:** Jedes Betriebsgerät kann bis zu 16 Lichtszenen speichern[cite: 2].
-*   **Dezentrale Datenspeicherung:** Die Intelligenz ist nicht zentralisiert; Parameter wie die Individualadresse, Gruppenzugehörigkeiten, Lichtszenenwerte, Fadingzeiten (Dimmgeschwindigkeit) und Notstrom- bzw. Einschaltlichtwerte werden direkt im EVG gespeichert[cite: 2].
+*   **Netzwerk-Parameter:** Ein einzelner DALI-Kreis erlaubt den Anschluss von bis zu 64 DALI-Betriebsgeräten. Zusätzlich können 16 logische Gruppen und 16 Szenen pro Gerät vergeben werden.
+*   **Elektrische Spezifikationen:** Die DALI-Busspannung variiert zwischen 12 V und 22,5 V (typisch 16 V). Der maximale DALI-Systemstrom ist auf 250 mA limitiert. Da ein Betriebsgerät (EVG) typischerweise max. 2 mA zieht, ergeben 64 Teilnehmer maximal 128 mA. Die verbleibende Leistung kann zur Versorgung von busgespeisten Steuermodulen oder Sensoren genutzt werden.
+*   **Datenübertragung & Dimmung:** Die Übertragungsrate ist auf 1200 Baud festgelegt (asynchrone Schnittstelle). Die Lichtauflösung bei der standardisierten logarithmischen Dimmkurve reicht bis zu 0,1 % hinab, was dem menschlichen Helligkeitsempfinden optimal angepasst ist.
+*   **Wichtige DALI-Parameter (nach Lunatone):** In den Betriebsgeräten werden systemkritische Zustände lokal konfiguriert. Dazu zählen die *FadeTime* (Überblendzeit), *FadeRate* (Dimmgeschwindigkeit), das *PowerOn Level* (Einschaltverhalten bei Netzspannungsrückkehr) und das *System Failure Level* (vordefiniertes Sicherheitsverhalten bei Ausfall der DALI-Busspannung).
 
-## 2. Planung und Topologie
+## 2. DALI-2 und Multimaster-Fähigkeit
 
-Bei der Planung einer DALI-Anlage sind keine besonderen Einschränkungen bei der Netzwerktopologie zu beachten.
+Mit DALI-2 wurde das System vollumfänglich multimasterfähig. Das bedeutet, dass nicht nur ein zentrales Gehirn sendet, sondern mehrere Steuergeräte (Application Controller) und Eingabegeräte (Sensoren) im selben Netzwerk miteinander kommunizieren.
+*   **Intelligente Lichtsensorik:** Moderne DALI-2 Sensoren (wie das kompakte Lunatone DALI-2 LS Modul oder der Tridonic MSensor) vereinen komplexe Umgebungslichtregelung (Konstantlichtregelung) und Anwesenheitserkennung. 
+*   **Erweiterte Umwelt-Sensoren:** Über moderne DALI-Infrastruktur lassen sich inzwischen auch Werte wie Temperatur, Luftfeuchtigkeit, Luftdruck oder Luftqualität erfassen und in das Netzwerk einspeisen.
 
-*   **Verdrahtungsarten:** DALI erlaubt Serienvernetzung, Sternvernetzung oder eine Mischung aus beidem[cite: 2]. Lediglich ringförmige Verbindungen sollten vermieden werden[cite: 2].
-*   **Keine Abschlusswiderstände:** Im Gegensatz zu anderen Bussystemen müssen bei DALI am Ende der Datenleitung keine Abschlusswiderstände angebracht werden[cite: 2].
-*   **Leitungslängen & Querschnitte:** Die maximale Leitungslänge zwischen den zwei am weitesten entfernten Systemteilnehmern darf 300 Meter nicht überschreiten[cite: 2]. Der Mindestquerschnitt der Leitung hängt von der Länge ab: 0,5 mm² bis 100 m, 0,75 mm² bis 150 m und 1,5 mm² bei über 150 m[cite: 2].
+## 3. D4i: Die IoT-Ready Erweiterung (DALI Alliance)
 
-## 3. Elektroinstallation und Spannungsversorgung
+D4i (DALI for IoT) ist eine signifikante Erweiterung der DALI-2 Zertifizierung, welche zukunftssichere, "IoT-ready" Leuchten definiert. D4i fokussiert sich stark auf sogenanntes **Intra-Luminaire DALI** – also ein autarkes DALI-Netzwerk *innerhalb* einer einzigen Leuchte.
 
-Die DALI-Schnittstelle ist unempfindlich und stark für die einfache Baupraxis optimiert.
+*   **Integrierte Stromversorgung (Part 250):** Für eine D4i-Zertifizierung muss ein LED-Treiber über eine integrierte DALI-Busstromversorgung verfügen. Dadurch entfällt der Platzbedarf für externe Netzteile, um Sensoren oder Kommunikationsmodule in oder an der Leuchte zu betreiben.
+*   **Plug-and-Play Stecksysteme:** D4i ist die technische Basis für drahtlose Smart-City- und Smart-Building-Stecksysteme wie Zhaga Book 18 oder ANSI C136.41 (Zhaga-D4i). Sensoren oder drahtlose Netzwerkknoten (NLCs) können hierüber einfach von außen auf die Leuchte aufgesteckt werden.
 
-*   **Leitungsführung:** Für die DALI-Steuerleitung (Zweidrahtleitung) ist keine Beachtung der Polarität erforderlich[cite: 2].
-*   **Zusammenverlegung:** Die Steuerleitung kann gemeinsam mit der Starkstrominstallation verlegt werden[cite: 2]. Oft wird ein 5-adriges Standard-Installationskabel verwendet (z.B. L, N, PE, DA, DA), da für die DALI-Adern nur die Anforderungen an die Basisisolierung (2 x Basisisolierung zwischen Netz und DALI) erfüllt sein müssen[cite: 2]. Besondere Daten- oder geschirmte Kabel sind nicht zwingend notwendig[cite: 2].
-*   **Spannung und Strom:** Der High-Pegel der Kommunikation liegt bei 16 Volt (toleriert zwischen 9,5 V und 22,5 V)[cite: 2]. Der Low-Pegel liegt bei 0 Volt (toleriert zwischen -4,5 V und +4,5 V)[cite: 2].
-*   **Stromaufnahme:** Eine zentrale Schnittstellenversorgung darf maximal 250 mA liefern[cite: 2]. Jedes angeschlossene elektronische Gerät (z.B. EVG) entnimmt der DALI-Leitung maximal 2 mA[cite: 2]. Auf der Leitung darf ein Spannungsabfall von maximal 2 V entstehen[cite: 2].
+## 4. Datenmanagement: Leuchten-, Energie- und Diagnosedaten
 
-## 4. Signalübertragung und Dimmverhalten
+Die DALI Alliance schreibt für D4i einen reichhaltigen standardisierten Datensatz vor (von Tridonic oft unter dem Begriff *lumDATA* zusammengefasst), der das Facility Management revolutioniert. 
 
-*   **Übertragungsrate und Code:** DALI arbeitet mit einer Nutzdatenübertragungsrate von 1200 bit/Sek. und nutzt den Manchester-Code zur fehlererkennenden Datenübertragung[cite: 2].
-*   **Dimmkennlinie:** Der Dimmbereich reicht typischerweise von 0,1% bis 100%[cite: 2]. Die Dimmkennlinie verläuft logarithmisch, was perfekt an die Empfindlichkeit des menschlichen Auges angepasst ist und für einen gleichmäßigen Helligkeitseindruck sorgt[cite: 2].
-*   **Synchrones Dimmen:** Ein großer Vorteil ist das automatische, absolut synchrone Dimmen aller beteiligten Betriebsgeräte bei einem Szeneaufruf, ohne störende Zeitverzögerungen (Popcorn-Effekt)[cite: 2].
+*   **Part 251 (Leuchtendaten):** Speicherung von Herstellerinformationen, OEM-Identifikationsdaten und Nennleistungen direkt im LED-Treiber für ein einfaches, digitales Asset-Management.
+*   **Part 252 (Energiedaten):** Übermittlung des aktuellen Stromverbrauchs und der Leistungsaufnahme in Echtzeit, um Gebäudeenergieausweise zu bedienen und Betriebskosten zu senken.
+*   **Part 253 (Diagnosedaten):** Überwachung von Fehlern (wie Übertemperatur, Überspannung) sowie Betriebsstunden. Dies ermöglicht *Predictive Maintenance* (vorausschauende Wartung), da drohende Ausfälle erkannt werden, bevor die Komponente versagt.
 
-## 5. Inbetriebnahme und Adressierung
+## 5. Notbeleuchtung nach DALI-2 Part 202
 
-Die Inbetriebnahme ist stark abhängig vom gewählten Steuergerät.
+Mit dem Update des Standards IEC 62386-202 im Jahr 2021 können nun auch "Self-contained emergency control gear" (einzelbatterieversorgte Notbeleuchtungskomponenten) nach DALI-2 zertifiziert werden.
+*   **Kompromisslose Interoperabilität:** Treibermodule (wie Tridonic EM powerLED PRO für LiFePO4-Batterien) sprechen nun garantiert die gleiche Sprache und lassen sich mit DALI-2 Lichtmanagementsystemen beliebiger Hersteller kombinieren.
+*   **Automatisiertes Prüfen:** Der Batteriezustand, Fehler sowie Systemtests können vollautomatisch über den DALI-Bus initiiert und protokolliert werden, wodurch gesetzliche Prüfaufwände stark sinken.
 
-*   **Teilnehmeridentifizierung:** Das Steuergerät sucht die Betriebsgeräte anhand einer im Werk hinterlegten 24-Bit langen Grundkennung (Langadresse)[cite: 2]. 
-*   **Zuweisung:** Den gefundenen Geräten wird während der Adressierung eine logische "Individualadresse" (Kurzadresse 0-63) zugewiesen[cite: 2].
-*   **Gruppenzuordnung:** Nach der Adressierung werden die Leuchten in sinnvolle Gruppen (0-15) zusammengefasst, was völlig per Software geschieht und bei Nutzungsänderungen keine Umverdrahtung der Anlage erfordert[cite: 2].
+## 6. Gateways, Displays und Gebäudeleittechnik (BMS)
 
-## 6. Gateways und Gebäudeleittechnik (BMS)
-
-Da DALI primär die Kommunikation auf Raumebene übernimmt, wird es in größeren Gebäuden oft als Subsystem integriert[cite: 2].
-
-*   Über Gateways (z. B. DALI-LON, DALI-EIB/KNX) fungiert das DALI-System als Ausführungsebene[cite: 2].
-*   Das übergeordnete System (BMS) schickt nur Befehle wie Dimmwerte, Fehlerabfragen oder Szenenaufrufe an das Gateway, während der detaillierte Datenaustausch mit den Leuchten lokal auf dem DALI-Bus verbleibt[cite: 2].
+Um die detaillierte DALI-Feldebene mit dem Rest des Gebäudes zu verbinden, kommen Gateways und Visualisierungen zum Einsatz.
+*   **DALI-2 Displays:** Lösungen wie das *Lunatone DALI-2 Display 7"* fungieren als zentrale Bediengeräte und Application Controller. Sie können mehrere DALI-Linien verwalten, WLAN-Schnittstellen bereitstellen und ermöglichen RGB- sowie Tunable-White-Steuerungen per Touch-Oberfläche.
+*   **BMS Integration (BACnet/REST API):** Hochwertige Zentralsteuerungen (wie Tridonic sceneCOM evo) integrieren das DALI-2-Lichtnetzwerk über BACnet nahtlos in die Klima-, Lüftungs- und Heizungstechnik eines Gebäudes. Alternativ erlauben REST-API-Schnittstellen die individuelle Analyse von IoT-Daten (z.B. Heatmaps zur Raumnutzung) in externen Dashboards.
