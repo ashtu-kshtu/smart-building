@@ -1,6 +1,6 @@
 ---
-title: DALI Lichtsteuerung – Deep Dive
-description: Umfassende Dokumentation zum Digital Addressable Lighting Interface (DALI, DALI-2 und D4i) inkl. Spezifikationen der DALI Alliance, Tridonic und Lunatone.
+title: DALI Lichtsteuerung
+description: Umfassende Dokumentation zum Digital Addressable Lighting Interface (DALI, DALI-2 und D4i) inkl. Spezifikationen der DALI Alliance.
 ---
 
 # DALI (Digital Addressable Lighting Interface)
