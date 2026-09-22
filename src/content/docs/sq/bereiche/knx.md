@@ -1,57 +1,57 @@
 ---
-title: Sistemi i Bus-it KNX - Protokolli & Aplikacioni
-description: Dokumentacion gjithëpërfshirës mbi protokollin KNX, mediat e transmetimit, arkitekturën e pajisjeve dhe shtresën e aplikacionit.
+title: Automatizimi i Ndërtesave KNX – Rrjetëzimi Inteligjent për Projektin Tuaj
+description: Zbuloni standardin botëror për ndërtesat inteligjente – nga bazat e rrjetëzimit deri te aplikimet konkrete në praktikë.
 ---
 
-# Sistemi i Bus-it KNX: Protokolli dhe Aplikacioni
+# Sistemi KNX: Sistemi nervor për ndërtesën tuaj inteligjente
 
-Shoqata KNX u krijua në vitin 1999 nga bashkimi i Shoqatës EIB, BCI (Batibus) dhe Shoqatës Evropiane të Sistemeve të Shtëpisë (EHS). Sistemi është një standard i hapur për automatizimin inteligjent të ndërtesave dhe është i standardizuar globalisht, ndër të tjera nga CENELEC (EN 50090) dhe ISO/IEC (14543-3). 
+Nëse po planifikoni sot një ndërtesë të së ardhmes – qoftë kjo një shtëpi private inteligjente (Smart Home) apo një kompleks i madh tregtar – vështirë se mund të shmangni KNX. Ndryshe nga sistemet e mbyllura të prodhuesve të veçantë, KNX ofron një gjuhë universale që lidh së bashku ndriçimin, ngrohjen, grilat dhe sistemin e sigurisë. 
 
-## 1. Mediat e Transmetimit (Shtresa Fizike)
+Ky seksion ju shpjegon në mënyrë të kuptueshme se si funksionon sistemi dhe çfarë vlerash të shtuara konkrete ofron për projektin tuaj.
 
-Protokolli KNX mund të transmetohet përmes mediave të ndryshme fizike, të cilat mund të lidhen me njëra-tjetrën përmes bashkuesve të mediave (media couplers).
+## 1. Historia dhe Krijimi: Standardi mbarëbotëror
 
-*   **Twisted Pair (TP / Kabllo me çifte të përdredhura):** Transmetimi bëhet përmes një kablloje kontrolli të veçantë, paralel me linjën 230 V. Ky medium ofron sigurinë më të lartë të transmetimit dhe preferohet në instalimet e reja.
-*   **Powerline (PL110):** Mesazhet KNX transmetohen drejtpërdrejt përmes rrjetit ekzistues elektrik 230 V, për të cilin duhet të jetë i pranishëm një përcjellës neutral (nul).
-*   **Radio Frequency (RF / Frekuencë Radio):** Transmetimi i sinjalit bëhet me valë përmes një lidhjeje radio, gjë që është veçanërisht e përshtatshme kur nuk dëshironi të shtroni kabllo të reja.
-*   **IP / Ethernet:** Përdoret në instalime të mëdha ku kërkohet një linjë zone e shpejtë, ose për komunikim me pajisje celulare.
+Shoqata KNX (KNX Association) u krijua në vitin 1999 nga bashkimi i sistemeve paraardhëse EIB, BCI (Batibus) dhe EHS. Qëllimi ishte t'i jepte fund kaosit të zgjidhjeve të ndryshme dhe të papajtueshme për Smart Home. 
 
-## 2. Qasja në Bus dhe Shmangia e Përplasjeve
+Sot, KNX është një standard i hapur dhe i normuar në mbarë botën (ndër të tjera nga CENELEC dhe ISO/IEC). Për ju si ndërtues ose investitor, kjo do të thotë pavarësi absolute: Mbi 500 prodhues në mbarë botën prodhojnë pajisje KNX (si çelësa, sensorë dhe aktorë/veprues), të cilat komunikojnë të gjitha pa probleme me njëra-tjetrën. Ju nuk jeni kurrë të lidhur me një ofrues të vetëm.
 
-Sistemi KNX funksionon në mënyrë të decentralizuar, prandaj nuk është e nevojshme një njësi qendrore kontrolli (si p.sh. një kompjuter) për funksionimin e rregullt. 
+## 2. Rrugët e transmetimit: Si flasin pajisjet
 
-*   Protokolli KNX përdor metodën CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance) për qasjen në bus.
-*   Zgjidhja e konflikteve në rast të transmetimit të njëkohshëm bëhet përmes arbitrimit bit për bit.
-*   Një "0" logjike është dominuese në bus, ndërsa një "1" logjike është recesive.
-*   Nëse një pajisje dërgon një "1" dhe zbulon një "0" dominuese në bus, ajo e ndërpret transmetimin, në mënyrë që telegrami me prioritet të transmetohet pa humbje të dhënash.
+Një sistem KNX është jashtëzakonisht fleksibël dhe mund të komunikojë përmes mediave të ndryshme, të cilat gjithashtu mund të kombinohen lehtësisht me njëra-tjetrën:
 
-## 3. Arkitektura e Pajisjeve të Bus-it
+*   **Kablloja e gjelbër (Twisted Pair - TP):** Klasiku për instalimet e reja. Një linjë e veçantë kontrolli shtrihet paralelisht me linjën normale të rrymës 230-volt. Ajo ofron sigurinë dhe besueshmërinë më të lartë.
+*   **Me valë (Radio Frequency - RF):** Pajisjet komunikojnë me njëra-tjetrën me valë radio. Perfekte për rinovime ose ndërtesa historike ku struktura e ndërtesës nuk duhet të preket.
+*   **Rrjeti (IP / Ethernet):** Përdoret si një "autostradë të dhënash" tepër e shpejtë në ndërtesat e mëdha ose për të lidhur sistemin me internetin dhe aplikacionet celulare.
 
-Një pajisje funksionale KNX (p.sh. një sensor ose aktuator) përbëhet kryesisht nga tre komponentë të ndërlidhur.
+## 3. Inteligjenca e decentralizuar: Një sistem pa "shef"
 
-*   **Bashkuesi i Bus-it (Busankoppler - BA):** Është përgjegjës për funksionin e lidhjes fizike, merr telegrame nga bus-i, i dekodon ato dhe dërgon informacione të koduara në bus.
-*   **Moduli i Aplikacionit (Anwendungsmodul - AM):** Përpunon hyrjet dhe daljet fizike, kalon informacionin e hyrjeve reale te bashkuesi i bus-it ose kontrollon daljet reale.
-*   **Programi i Aplikacionit (Applikationsprogramm - AP):** Përcakton funksionin specifik të pajisjes dhe ngarkohet në memorien e programit.
+Një avantazh i madh i KNX është mënyra e tij e decentralizuar e punës. Nuk ka asnjë kompjuter qendror (ose server) që duhet të kontrollojë detyrimisht funksionimin e rregullt. Nëse një çelës në mur prishet, pjesa tjetër e shtëpisë vazhdon të funksionojë krejtësisht e paprekur.
 
-Inteligjenca e pajisjes ruhet në lloje të ndryshme të memories së mikrokontrolluesit:
-*   **(Flash) ROM:** Ruan softuerin e pandryshueshëm të sistemit (System Stack), i identifikueshëm përmes versionit të maskës.
-*   **RAM:** Ruan vlera të përkohshme, të cilat humbasin në rast të rënies së tensionit.
-*   **EEPROM:** Ruan programin e aplikacionit që mund të rishkruhet, adresat fizike, adresat e grupit dhe parametrat.
+*   **Dërgimi inteligjent:** Pajisjet gjithmonë dëgjojnë nëse linja është e lirë në atë moment (një proces i quajtur CSMA/CA). 
+*   **Përparësi për gjërat e rëndësishme:** Nëse dy pajisje dërgojnë saktësisht në të njëjtën kohë, mesazhi më i rëndësishëm (një "0" dominuese) mbizotëron automatikisht, pa humbur të dhëna. Një alarm zjarri ka kështu gjithmonë përparësi ndaj komandës së zbehjes (dimming) për dritën e dhomës së ndenjes.
 
-## 4. Shtresa e Aplikacionit dhe Konfigurimi
+## 4. Ndërtimi i pajisjeve dhe programimi
 
-Ndërveprimi midis pajisjeve të prodhuesve të ndryshëm garantohet përmes llojeve të standardizuara të konfigurimit dhe të dhënave të përdoruesit në telegrame.
+Për të bërë të mundur që teknologjia të punojë në mënyrë të padukshme në prapavijë, çdo pjesëmarrës i KNX (p.sh. një çelës inteligjent i dritës) në thelb përbëhet nga tre komponentë:
+1.  **Lidhësi i bus-it (Busankoppler):** Ai është "veshi" drejt sistemit dhe përkthen mesazhet nga kablloja.
+2.  **Moduli i aplikacionit (Anwendungsmodul):** Ai ekzekuton veprimin e vërtetë – si për shembull ndezjen e rrymës për llambën.
+3.  **Programi i aplikacionit (Applikationsprogramm):** Ky është "truri", i cili ruhet në një memorie të brendshme (EEPROM) dhe i tregon pajisjes se cila është saktësisht detyra e saj.
 
-### 4.1 Llojet e Konfigurimit
-*   **S-Mode (System Mode):** Planifikimi dhe konfigurimi bëhet përmes një kompjuteri me softuerin neutral ndaj prodhuesit ETS (Engineering Tool Software). Kjo metodë është e destinuar për planifikuesit e certifikuar KNX dhe kryesisht për instalime të mëdha.
-*   **E-Mode (Easy Mode):** Konfigurimi nuk bëhet përmes një kompjuteri, por me anë të një kontrolluesi qendror ose butonave. Këto pajisje zakonisht kanë funksionalitet të kufizuar dhe janë të dizajnuara për instalime të mesme.
+**Si mëson sistemi (S-Mode):** 
+I gjithë konfigurimi dhe planifikimi i një sistemi profesional KNX bëhet në kompjuter përmes një softueri të vetëm, të pavarur nga prodhuesi, të quajtur ETS (Engineering Tool Software). Këtu, programuesi lidh virtualisht çelësin në korridor me llambën e tavanit, ku komandat – si ndryshimi midis një shtypjeje të shkurtër të butonit ("ndiz dritën") dhe një shtypjeje të gjatë ("zbeh dritën") – janë rreptësisht të normuara. Për sisteme më të vogla ekziston gjithashtu *E-Mode* më i thjeshtë, i cili mund të konfigurohet pa kompjuter (PC).
 
-### 4.2 Profilet e Sistemit dhe Objektet
-Softueri i sistemit i një pajisjeje bazohet në profile të standardizuara që përcaktojnë zgjerimin e memories dhe funksionet e mbështetura.
-*   **Sistemi 1 & 2:** Gjenerata më të vjetra, ku Sistemi 2 mbështet deri në 254 objekte komunikimi.
-*   **Sistemi 7 & B:** Zhvilluar për pajisje komplekse të bus-it (p.sh. kontrollues aplikacionesh). Sistemi B heq kufizimet e mëparshme dhe mbështet deri në 65,536 objekte komunikimi.
+## 5. Fushat konkrete të aplikimit
 
-### 4.3 Funksionet e Standardizuara të Përdoruesit (Shembull: Dimming / Zbehja e Dritës)
-Në mënyrë që aktuatorët dhe sensorët të komunikojnë në mënyrë të njëtrajtshme, sekuencat e komandave në shtresën e aplikacionit janë rreptësisht të standardizuara.
-*   **Dimming Start/Stop (Fillimi/Ndalimi i Zbehjes):** Kohëzgjatja e shtypjes së butonit përdoret për të dalluar funksionin. Me një shtypje të shkurtër, sensori dërgon një telegram për "Ndezje/Fikje", me një shtypje të gjatë dërgon një telegram "Fillim i zbehjes", dhe gjatë lëshimit dërgon "Ndalim i zbehjes".
-*   **Dimming Ciklik (Zbehje ciklike):** Në telekomandat me valë, komandat e zbehjes (p.sh. "Rrit ndriçimin me 12.5%") dërgohen në mënyrë ciklike për të siguruar që ndërprerjet e sinjalit të mos çojnë në humbjen e telegrameve të rëndësishme të ndalimit.
+Sistemi KNX i përshtatet saktësisht madhësisë dhe kërkesave të ndërtesës suaj – nga shtëpitë njëfamiljare deri te aeroportet.
+
+### Vilat luksoze dhe Smart Homes
+Këtu në qendër të vëmendjes është komoditeti i jetesës. Me KNX ju kontrolloni ndriçimin, grilat, temperaturën e dhomës dhe sistemet e alarmit përmes paneleve elegante në mur ose aplikacionit në smartphone. Kur dilni nga shtëpia, një shtypje butoni te dera e jashtme fik të gjitha dritat, ul ngrohjen dhe aktivizon sistemin e sigurisë.
+
+### Tregtia dhe Zyrat (Offices)
+Në zyrat moderne fokusi është tek efikasiteti i energjisë dhe fleksibiliteti. Detektorët e pranisë KNX ndezin dritën dhe kondicionerin vetëm atëherë kur një dhomë po përdoret vërtet. Nëse zyrat me hapësirë të madhe rindërtohen më vonë në dhoma të vogla takimesh (meeting rooms), nuk ka nevojë të thyhen muret – çelësat dhe llambat thjesht ricaktohen nëpërmjet softuerit ETS.
+
+### Industria e Hotelerisë (Hotelet)
+Për hotelet, KNX ofron balancën e përsosur midis komoditetit të miqve dhe menaxhimit qendror. Kur një klient bën check-in në recepsion, sistemi KNX e rrit tashmë temperaturën e dhomës në një nivel të rehatshëm dhe hap perdet. Kur klienti bën check-out, dhoma kalon automatikisht në modalitetin e gatishmërisë (standby) për të kursyer energji.
+
+### Ndërtesat Publike dhe Shkollat
+Menaxhimi i objekteve gjigante kërkon pasqyrë të qartë. KNX (Sistemi 7 & B) mbështet madje edhe pajisje shumë komplekse me mijëra funksione. Nëpërmjet vizualizimeve (Dashboards), mirëmbajtësi ka një pamje qendrore në çdo kohë mbi konsumin e plotë të energjisë, statusin e sistemit të ngrohjes dhe sistemet automatike të hijëzimit.
