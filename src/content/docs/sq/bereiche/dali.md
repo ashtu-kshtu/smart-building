@@ -7,18 +7,18 @@ description: Nga krijimi i standardit te specifikat DALI Device Types (DT0 deri 
 
 ## 1. Historia dhe Krijimi: Pse u zhvillua DALI
 
-Në fund të viteve 1990, kontrolli analog i ndriçimit filloi të arrinte kufijtë e tij. Standardi 1-10V që dominonte deri atëherë ishte i njohur, por kishte disavantazhe të konsiderueshme: Komunikimi ishte vetëm në një drejtim (unidireksional), kostoja dhe puna për instalimin e kabllove për grupe të ndryshme ndriçimi ishte e madhe, dhe rënia e tensionit në linjë çonte në zbehje (dimming) të pabarabartë[cite: 2]. Për më tepër, nuk ishte i mundur një reagim mbi statusin e llambave me defekt.
+Në fund të viteve 1990, kontrolli analog i ndriçimit filloi të arrinte kufijtë e tij. Standardi 1-10V që dominonte deri atëherë ishte i njohur, por kishte disavantazhe të konsiderueshme: Komunikimi ishte vetëm në një drejtim (unidireksional), kostoja dhe puna për instalimin e kabllove për grupe të ndryshme ndriçimi ishte e madhe, dhe rënia e tensionit në linjë çonte në zbehje (dimming) të pabarabartë. Për më tepër, nuk ishte i mundur një reagim mbi statusin e llambave me defekt.
 
-Për të zgjidhur këto probleme, prodhuesit kryesorë të industrisë së ndriçimit u bashkuan. Qëllimi ishte një standard dixhital, i pavarur nga prodhuesi: **Digital Addressable Lighting Interface (DALI)** lindi dhe u fiksua në normën IEC 60929 (më vonë IEC 62386)[cite: 2]. DALI duhej të ruante thjeshtësinë e instalimit analog – si për shembull shtrirja e përbashkët e linjës së rrjetit dhe asaj të kontrollit[cite: 2] – por të decentralizonte inteligjencën dhe të mundësonte komunikim të dyanshëm (dërgim dhe marrje).
+Për të zgjidhur këto probleme, prodhuesit kryesorë të industrisë së ndriçimit u bashkuan. Qëllimi ishte një standard dixhital, i pavarur nga prodhuesi: **Digital Addressable Lighting Interface (DALI)** lindi dhe u fiksua në normën IEC 60929 (më vonë IEC 62386). DALI duhej të ruante thjeshtësinë e instalimit analog – si për shembull shtrirja e përbashkët e linjës së rrjetit dhe asaj të kontrollit – por të decentralizonte inteligjencën dhe të mundësonte komunikim të dyanshëm (dërgim dhe marrje).
 
 ## 2. Mundësitë Teknike dhe Arkitektura e Sistemit
 
-DALI u ofron arkitektëve, inxhinierëve elektrikë dhe integruesve të sistemeve një fleksibilitet të jashtëzakonshëm në dizajnin e ndriçimit[cite: 2]. Funksionet kryesore përfshijnë:
+DALI u ofron arkitektëve, inxhinierëve elektrikë dhe integruesve të sistemeve një fleksibilitet të jashtëzakonshëm në dizajnin e ndriçimit. Funksionet kryesore përfshijnë:
 
-*   **Komunikimi i dyanshëm (Bidireksional):** Pajisjet e kontrollit mund të dërgojnë komanda dhe njëkohësisht të kërkojnë informacione mbi statusin (p.sh. "llamba me defekt" ose "pajisja e kontrollit e mbinxehur") nga ndriçuesit[cite: 2].
-*   **Inteligjenca e decentralizuar:** Të gjitha parametrat e rëndësishëm si adresa e shkurtër (0-63), përkatësitë në grupe (0-15) dhe deri në 16 skena ndriçimi ruhen drejtpërdrejt në pajisjen elektronike të kontrollit (EVG/driver)[cite: 2].
-*   **Zbehja (Dimming) logaritmike:** Lakorja e zbehjes është përshtatur saktësisht me ndjeshmërinë e syrit të njeriut, gjë që siguron një tranzicion shumë të butë dhe natyral të ndriçimit[cite: 2].
-*   **Sinkronizimi:** Gjatë thirrjes së një skene, të gjitha llambat e përfshira zbehen absolutisht në mënyrë sinkrone në vlerën e synuar, pavarësisht nga gjendja e tyre e mëparshme[cite: 2].
+*   **Komunikimi i dyanshëm (Bidireksional):** Pajisjet e kontrollit mund të dërgojnë komanda dhe njëkohësisht të kërkojnë informacione mbi statusin (p.sh. "llamba me defekt" ose "pajisja e kontrollit e mbinxehur") nga ndriçuesit.
+*   **Inteligjenca e decentralizuar:** Të gjitha parametrat e rëndësishëm si adresa e shkurtër (0-63), përkatësitë në grupe (0-15) dhe deri në 16 skena ndriçimi ruhen drejtpërdrejt në pajisjen elektronike të kontrollit (EVG/driver).
+*   **Dimerimi (Dimming) logaritmike:** Lakorja e dimerimit është përshtatur saktësisht me ndjeshmërinë e syrit të njeriut, gjë që siguron një tranzicion shumë të butë dhe natyral të ndriçimit.
+*   **Sinkronizimi:** Gjatë thirrjes së një skene, të gjitha llambat e përfshira zbehen absolutisht në mënyrë sinkrone në vlerën e synuar, pavarësisht nga gjendja e tyre e mëparshme.
 
 ## 3. DALI Device Types (Llojet e pajisjeve): Nga DT0 në DT8
 
@@ -36,7 +36,7 @@ Për të pasqyruar larminë e madhe të llambave dhe funksioneve në protokoll, 
 
 ## 4. DALI në kontrollin profesional të ndriçimit
 
-Në ndërtesat moderne komerciale, DALI rrallë punon si një sistem plotësisht i izoluar. Ai formon nivelin e specializuar të ekzekutimit (field level), i cili integrohet në sistemin e menaxhimit të ndërtesës (BMS) përmes portave (Gateways, p.sh. KNX-DALI, BACnet-DALI ose Modbus-DALI)[cite: 2]. 
+Në ndërtesat moderne komerciale, DALI rrallë punon si një sistem plotësisht i izoluar. Ai formon nivelin e specializuar të ekzekutimit (field level), i cili integrohet në sistemin e menaxhimit të ndërtesës (BMS) përmes portave (Gateways, p.sh. KNX-DALI, BACnet-DALI ose Modbus-DALI). 
 
 Këtu DALI merr përsipër zbehjen e shpejtë, sinkrone dhe menaxhimin lokal të sensorëve (kontrolli i dritës së ditës, zbulimi i pranisë). BMS-i kryesor përdor këto të dhëna në të gjitha disiplinat – për shembull, jo vetëm për të ndezur dritën kur zbulohet prania në dhomë, por edhe për të ndezur kondicionerin ose për të hapur grilat.
 
@@ -50,7 +50,7 @@ Në pronat e banimit të nivelit të lartë, komoditeti është në plan të par
 ### Industria e Hotelerisë (Hotelet)
 Hotelet kërkojnë një përzierje të përfaqësimit, komoditetit dhe efikasitetit të energjisë. Në holl, skenat e ndriçimit RGBW (DT8) krijojnë thekse atmosferike që ndryshojnë në varësi të kohës së ditës. Në korridore, kombinimi i detektorëve të pranisë DALI dhe një ndriçimi bazë (p.sh. 10% ndriçim në gatishmëri, 80% gjatë lëvizjes) ul në mënyrë drastike kostot e energjisë, pa rrezikuar ndjenjën e sigurisë së të ftuarve.
 
-### Tregtia dhe Zyrat (Offices)
+### Dyqanet dhe Zyrat (Offices)
 Në mjedisin e zyrave, fokusi është te udhëzimet e vendit të punës dhe fleksibiliteti. Shiritat e dritave DALI përshtaten vazhdimisht me rrezet e diellit nëpërmjet sensorëve të dritës së ditës (kontrolli i dritës konstante), gjë që nxit përqendrimin dhe kursen masivisht energji. Gjatë ristrukturimeve (p.sh. ishuj të rinj tavolinash) nuk është e nevojshme të tërhiqen kabllo të rinj; ndriçuesit DALI thjesht i caktohen grupeve dhe çelësave të rinj nëpërmjet softuerit.
 
 ### Industria dhe Logjistika

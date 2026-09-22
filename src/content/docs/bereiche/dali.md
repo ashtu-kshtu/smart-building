@@ -9,7 +9,7 @@ description: Von der Entstehung des Standards über die spezifischen DALI Device
 
 In den späten 1990er Jahren stieß die analoge Beleuchtungssteuerung zunehmend an ihre Grenzen. Der bis dahin dominierende 1-10V-Standard war zwar etabliert, brachte jedoch erhebliche Nachteile mit sich: Die Kommunikation verlief nur in eine Richtung (unidirektional), der Verkabelungsaufwand für verschiedene Lichtgruppen war immens, und Spannungsabfälle auf der Leitung führten zu ungleichmäßigem Dimmverhalten. Zudem war keine Statusrückmeldung defekter Leuchtmittel möglich.
 
-Um diese Probleme zu lösen, schlossen sich führende Hersteller der Lichtindustrie (wie Osram, Philips und Tridonic) zusammen. Das Ziel war ein herstellerübergreifender, digitaler Standard: Das **Digital Addressable Lighting Interface (DALI)** wurde geboren und in der Norm IEC 60929 (später IEC 62386) fixiert. DALI sollte die Einfachheit der analogen Installation beibehalten – etwa die gemeinsame Verlegung von Netz- und Steuerleitung[cite: 2] – aber die Intelligenz dezentralisieren und eine bidirektionale Kommunikation (Senden und Empfangen) ermöglichen.
+Um diese Probleme zu lösen, schlossen sich führende Hersteller der Lichtindustrie (wie Osram, Philips und Tridonic) zusammen. Das Ziel war ein herstellerübergreifender, digitaler Standard: Das **Digital Addressable Lighting Interface (DALI)** wurde geboren und in der Norm IEC 60929 (später IEC 62386) fixiert. DALI sollte die Einfachheit der analogen Installation beibehalten – etwa die gemeinsame Verlegung von Netz- und Steuerleitung – aber die Intelligenz dezentralisieren und eine bidirektionale Kommunikation (Senden und Empfangen) ermöglichen.
 
 ## 2. Technische Möglichkeiten und Systemarchitektur
 
