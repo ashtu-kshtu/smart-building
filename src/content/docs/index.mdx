@@ -13,7 +13,7 @@ hero:
       icon: external
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Icon } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import knxLogo from '../../assets/KNX_logo.svg.webp';
 import daliLogo from '../../assets/dali-2.jpg';
@@ -63,7 +63,13 @@ import modbusLogo from '../../assets/modbus-logo.png';
 		Serielle Kommunikation, Registerstrukturen und Integration von Mess- und Zähltechnik.
 	</Card>
 
-	<Card title="Elektro" icon="open-book">
+	<Card title="">
+		<a href="/bereiche/elektro/" style="text-decoration: none; color: inherit; display: block;">
+			<div style="margin-bottom: 12px;">
+				<Icon name="open-book" size="3rem" />
+			</div>
+			<h3 style="margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600;">Elektro</h3>
+		</a>
 		Grundlagen, Normen, Schaltpläne und Best Practices für die Elektroinstallation.
 	</Card>
 </CardGrid>
