@@ -23,7 +23,7 @@ export default defineConfig({
           lang: 'sq',
         },
       },
-     sidebar: [
+      sidebar: [
         {
           label: 'Startseite',
           translations: {
@@ -41,11 +41,8 @@ export default defineConfig({
             { label: 'DALI', slug: 'bereiche/dali' },
             { label: 'BACnet', slug: 'bereiche/bacnet' },
             { label: 'ModBUS', slug: 'bereiche/modbus' },
-            { 
-              label: 'Elektro', 
-              translations: { sq: 'Elektrike' }, // Bei Bedarf anpassen
-              slug: 'bereiche/elektro' 
-            },
+            { label: 'Home Assistant', slug: 'bereiche/ha' },
+            { label: 'Elektro', slug: 'bereiche/elektro' },
           ],
         },
       ],
